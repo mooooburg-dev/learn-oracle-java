@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Object</title>
+    </head>
+    <body>
+        <h2>Object Demo</h2>
+
+        <button id="btn1">Press</button>
+
+        <script type="text/javascript">
+            // 브라우저가 문서를 읽고 처리를 완료했을 때 발생하는 이벤트
+            window.addEventListener("load", function(){
+                
+                // DOM 트리안에서 id 속성의 값이 btn1인 객체 찾기
+                var btn1 = document.querySelector('#btn1');
+
+                // btn1.onclick = function(event){ ... }
+                btn1.addEventListener("click", function(event){
+                    alert('Pressed!!');
+                })
+            });
+        </script>
+
+    </body>
+</html>

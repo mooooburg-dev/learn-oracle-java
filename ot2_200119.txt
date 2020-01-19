@@ -1,2 +1,10 @@
 ot2_200119
 
+Event
+-
+
+
+Object
+- 선택자
+- addEventListener
+
