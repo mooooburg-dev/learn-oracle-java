@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lotto</title>
+    </head>
+    <body>
+        <h2>SELECTED NUMBERS</h2>
+
+        <script type="text/javascript">
+            // 1. 1 ~ 45, random, 중복되지 않는 6개의 숫자
+            var numbers = new Array(6);
+            var avg = 0;
+
+            do {
+                for(var i=0 ; i<numbers.length ; i++){
+                    // Math.ceil : 올림
+                    numbers[i] = Math.ceil(Math.random()*45);
+
+                    for(var j=0 ; j<i ; j++){
+                        if(numbers[i] == numbers[j]){
+                            // i--;
+                            i = -1;
+                            break;
+                        }
+                    }
+                }
+
+                var sum = 0;
+                for(var i=0 ; i<numbers.length ; i++){
+                    sum += numbers[i];
+                }
+                avg = sum / numbers.length; // 평균
+            
+            
+            } while (avg < 20 || avg > 26); // 다시 뽑기
+            
+            document.write("<table border='1'><tr>");
+            for(var i=0 ; i<numbers.length ; i++){
+                document.write("<th width='40'>" + numbers[i] + "</th>");
+            }
+            document.write("<th width='40'>" + avg + "</th>");
+            document.write("</tr></table>");
+        </script>
+    </body>
+</html>

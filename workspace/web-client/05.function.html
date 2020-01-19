@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lotto</title>
+    </head>
+    <body>
+        <h2>SELECTED NUMBERS</h2>
+        
+        <script type="text/javascript">
+        
+            function selectBasicNumbers(){
+                var numbers = new Array(6);
+
+                // 1. 1 ~ 45, random, 중복되지 않는 6개의 숫자
+                for(var i=0 ; i<numbers.length ; i++){
+                    // Math.ceil : 올림
+                    numbers[i] = Math.ceil(Math.random()*45);
+
+                    for(var j=0 ; j<i ; j++){
+                        if(numbers[i] == numbers[j]){
+                            // i--;
+                            i = -1;
+                            break;
+                        }
+                    }
+                }
+
+                return numbers;
+            }
+
+            function calculateAverage(numbers){
+                var sum = 0;
+                for(var i=0 ; i<numbers.length ; i++){
+                    sum += numbers[i];
+                }
+                avg = sum / numbers.length; // 평균
+                return avg;
+            }
+
+            function checkAverage(avg, min, max){
+                return avg >= min && avg <= max;
+            }
+
+            function showNumbers(numbers){
+                var avg = calculateAverage(numbers)
+                document.write("<table border='1'><tr>");
+                for(var i=0 ; i<numbers.length ; i++){
+                    document.write("<th width='40'>" + numbers[i] + "</th>");
+                }
+                document.write("<th width='40'>" + avg + "</th>");
+                document.write("</tr></table>");
+            }
+
+            function selectWinningNumbers(){
+                var avg;
+                var numbers = 0;
+                do {
+                    numbers = selectBasicNumbers();
+                    avg = calculateAverage(numbers);
+
+                } while (!checkAverage(avg, 20, 26)); // 다시 뽑기
+
+                return numbers;
+            }
+            
+            var numbers = selectWinningNumbers();
+            showNumbers(numbers);
+        </script>
+    </body>
+</html>

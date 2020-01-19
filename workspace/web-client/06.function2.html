@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lotto</title>
+    </head>
+    <body>
+        <h2>Function Demo</h2>
+        
+        <script type="text/javascript">
+        
+            function f(){
+                alert('f is called!');
+            }
+
+            f(); // 함수 호출 : 정의된 함수의 코드가 실행되도록 요청
+
+            // 자바스크립트 함수는 데이터이다.
+            
+            var f2 = f; // 함수도 데이터(객체)이다. 변수에 저장이 가능하다. 변수가 함수가 된다.
+
+            f2();
+
+            f();    // 지정된 전달인자를 제공하지 않아도 함수호출이 가능하다.
+
+
+            var f3 = function(){
+                alert('annymous function is called!!');
+            }
+
+            f3();
+
+
+        </script>
+    </body>
+</html>
