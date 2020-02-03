@@ -30,7 +30,7 @@ public class GenericDemo {
 		System.out.println("======================================");
 		
 		// data1은 Integer, data2는 String으로 사용하겠다
-		TheGeneric<Integer, String> gobj = new TheGeneric();
+		TheGeneric<Integer, String> gobj = new TheGeneric ();
 		gobj.data1 = 10;
 		gobj.data2 = "Hello";
 		//gobj.data2 = 12.34; // 확정된 자료형을 변경할 수 없음
