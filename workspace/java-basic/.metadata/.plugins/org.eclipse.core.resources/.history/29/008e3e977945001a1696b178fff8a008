@@ -1,0 +1,18 @@
+
+
+// abstract class : 인스턴스 생성 불가능 (new가 안됨)
+abstract class TheAbstract {
+	
+}
+
+
+public class AbstractDemo {
+
+	public static void main(String[] args) {
+		
+		// 
+		TheAbstract a1; // 추상클래스 참조 변수 생성 O
+		a1 = new TheAbstract(); // 추상클래스 인스턴스 생성 X
+	}
+
+}

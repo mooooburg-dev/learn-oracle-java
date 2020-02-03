@@ -1,0 +1,24 @@
+import lombok.Data;
+
+
+@Data
+class ThePoint {
+	private int x;
+	private int y;
+}
+
+public class ObjectArrayDemo {
+
+	public static void main(String[] args) {
+
+		ThePoint[] points = new ThePoint[10];
+		for(int i=0 ; i<points.length ; i++) {
+			points[i] = new ThePoint();
+			points[i].setX(i * 100);
+			points[i].setY(i * 100);
+			
+			System.out.println(points[i]);
+		}
+	}
+
+}

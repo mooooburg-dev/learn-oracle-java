@@ -1,0 +1,16 @@
+
+
+class TheObject {
+	
+}
+
+public class ObjectDemo {
+
+	public static void main(String[] args) {
+
+		TheObject obj = new TheObject();
+		
+		
+	}
+
+}

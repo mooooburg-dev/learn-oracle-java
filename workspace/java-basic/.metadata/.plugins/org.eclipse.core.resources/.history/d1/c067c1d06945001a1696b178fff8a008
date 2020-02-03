@@ -1,0 +1,33 @@
+
+class TheShape {
+	String name;
+	
+	public void draw() {
+		System.out.println("TheShape.draw()");
+	}
+}
+class TheRect extends TheShape {
+	public void draw() {
+		System.out.println("TheRect.draw()");
+	}
+}
+class TheOval extends TheShape {
+	public void draw() {
+		System.out.println("TheOval.draw()");
+	}
+}
+class TheLine extends TheShape {
+	public void draw() {
+		System.out.println("TheLine.draw()");
+	}
+}
+
+public class Polymorphism {
+
+	public static void main(String[] args) {
+
+		// TheRect 3개, The Line 3개, TheOval 3개
+		
+	}
+
+}

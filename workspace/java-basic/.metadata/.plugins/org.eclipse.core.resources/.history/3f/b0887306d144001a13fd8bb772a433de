@@ -1,0 +1,22 @@
+package com.example;
+
+class Person {
+	private int no;
+	private String name;
+	private String email;
+public	String info() {
+		return String.format("[%d][%s][%s]", no, name, email);
+	}
+}
+
+public class ClassDemo2 {
+	public static void main(String[] args) {
+		Person person = new Person();
+		person.no = 1;
+		person.name = "John Doe";
+		person.email = "aaa@naver.com";
+		
+		String info = person.info();
+		System.out.println(info);
+	}
+}

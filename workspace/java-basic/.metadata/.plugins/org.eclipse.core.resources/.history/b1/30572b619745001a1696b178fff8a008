@@ -1,0 +1,14 @@
+
+
+class TheObject2 {
+	int data;
+}
+
+
+public class GenericDemo {
+
+	public static void main(String[] args) {
+
+	}
+
+}

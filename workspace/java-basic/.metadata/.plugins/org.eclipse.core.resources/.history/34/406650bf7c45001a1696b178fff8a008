@@ -1,0 +1,14 @@
+
+
+// interface : 극단적인 추상클래스 -> 모든 멤버가 추상 메서드
+interface TheInterface {
+	void am1();
+}
+
+public class InterfaceDemo {
+
+	public static void main(String[] args) {
+
+	}
+
+}

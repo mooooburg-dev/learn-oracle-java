@@ -1,0 +1,17 @@
+import lombok.Data;
+
+
+@Data
+class ThePoint {
+	private int x;
+	private int y;
+}
+
+public class ObjectArrayDemo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

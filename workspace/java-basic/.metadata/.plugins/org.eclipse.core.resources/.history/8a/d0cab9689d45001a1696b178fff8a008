@@ -1,0 +1,26 @@
+import java.util.ArrayList;
+
+public class HelloCollection {
+	
+	public static void main(String[] args) {
+
+		//String[] ar = new String[10];
+		//ar[0] = "test";
+		
+		ArrayList al = new ArrayList();
+		al.add(10);
+		al.add("Data 2");
+		al.add("Data 3");
+		al.add("Data 4");
+		al.add("Data 5");
+		
+		for( int i=0 ; i<al.size(); i++) {
+			System.out.println(al.get(i));
+		}
+		
+		
+		System.out.println(al);
+		
+	}
+
+}

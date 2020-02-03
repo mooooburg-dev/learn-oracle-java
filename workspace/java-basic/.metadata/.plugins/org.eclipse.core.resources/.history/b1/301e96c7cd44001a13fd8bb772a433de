@@ -1,0 +1,34 @@
+package com.example;
+
+import java.awt.Color;
+import java.awt.Container;
+
+import javax.swing.JFrame;
+
+public class ClassDemo {
+
+	public static void main(String[] args) {
+		
+		// 윈도우를 만드는 객체
+		JFrame window = new JFrame();
+		
+		// 윈도우가 닫히면 프로그램 종료
+		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
+		window.setTitle("윈도우 만들기 연습");
+		window.setSize(500, 400);
+		window.setResizable(false);
+		
+		// 윈도우의 사용자 화면 영역 객체
+		Container panel = window.getContentPane();
+		panel.setBackground(Color.orange);
+		
+		window.setVisible(true);
+		
+
+		
+		
+		
+	}
+
+}

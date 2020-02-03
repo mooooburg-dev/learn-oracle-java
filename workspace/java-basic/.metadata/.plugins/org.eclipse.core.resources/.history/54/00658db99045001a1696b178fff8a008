@@ -1,0 +1,33 @@
+
+
+class TheObject {	// extends Object 가 생략되어 있는 형태
+	
+	int x;
+}
+
+public class ObjectDemo {
+
+	public static void main(String[] args) {
+
+		TheObject obj1 = new TheObject();
+		obj1.x = 10;
+		
+		TheObject obj2 = new TheObject();
+		obj2.x = 10;
+		
+//		if( obj1 == obj2 ) { // 비교 연산자는 주소를 비교한다
+//			System.out.println("Equals");
+//		}
+//		else {
+//			System.out.println("Not Equals");
+//		}
+		
+		if( obj1.equals(obj2) ) { // Object.equals()는 주소를 비교한다
+			System.out.println("Equals");
+		}
+		else {
+			System.out.println("Not Equals");
+		}
+	}
+
+}

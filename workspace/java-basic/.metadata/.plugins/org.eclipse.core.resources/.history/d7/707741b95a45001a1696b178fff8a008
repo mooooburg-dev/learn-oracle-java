@@ -1,0 +1,16 @@
+
+class TheBase {
+	String m1 = "Base Member";
+	
+	void m() {
+		System.out.println("TheBase.m()");
+	}
+}
+
+public class ExtendsDemo {
+
+	public static void main(String[] args) {
+
+	}
+
+}

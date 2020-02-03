@@ -1,0 +1,23 @@
+package com.example;
+
+class Person {
+	
+	int no;
+	String name;
+	String email;
+	
+	String info() {
+		return String.format("[%d][%s][%s]", no, name, email);
+	}
+	
+	
+}
+
+public class ClassDemo2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

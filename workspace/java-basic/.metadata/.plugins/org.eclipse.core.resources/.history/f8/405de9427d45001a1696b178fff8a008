@@ -1,0 +1,30 @@
+
+
+// interface : 극단적인 추상클래스 -> 모든 멤버가 추상 메서드(일반 변수는 안됨)
+interface TheInterface {
+	void am1();	// -> public abstract void am1();
+	void am2();	// -> public abstract void am2();
+}
+
+public class InterfaceDemo {
+
+	public static void main(String[] args) {
+		
+		TheInterface i1 = new TheInterface() {
+			
+			@Override
+			public void am2() {
+				// TODO Auto-generated method stub
+				
+			}
+			
+			@Override
+			public void am1() {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+			
+	}
+
+}

@@ -1,0 +1,12 @@
+
+public class ArrayDemo {
+
+	public static void main(String[] args) {
+		
+		//1. 배열 만들기
+		int x = 10;
+		int[] ar;	// 참조형 변수 만들기
+		ar = new int[10];
+	}
+
+}

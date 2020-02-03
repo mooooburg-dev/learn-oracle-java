@@ -1,0 +1,21 @@
+
+class TheBase {
+	String m1 = "Base Member";
+	
+	void m() {
+		System.out.println("TheBase.m()");
+	}
+}
+
+//TheBase의 모든 멤버가 TheDerived에 포함
+class TheDerived extends TheBase {
+	
+}
+
+public class ExtendsDemo {
+
+	public static void main(String[] args) {
+
+	}
+
+}

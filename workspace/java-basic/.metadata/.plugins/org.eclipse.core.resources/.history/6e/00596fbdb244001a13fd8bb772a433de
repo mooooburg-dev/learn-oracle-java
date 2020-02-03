@@ -1,0 +1,20 @@
+
+public class ArrayDemo {
+
+	public static void main(String[] args) {
+		
+		//1. 배열 만들기
+		int x = 10;
+		int[] ar = null;	// 참조형 변수 만들기
+		System.out.println(ar);
+		ar = new int[10];	// 인스턴스 만들기 + 주소를 참조형 변수에 저장
+		System.out.println(ar);
+		
+		for( int i=0 ; i<ar.length ; i++) {
+			ar[i] = (int)(Math.random() * 900)+100;
+			
+			System.out.println(ar[i]);
+		}
+	}
+
+}

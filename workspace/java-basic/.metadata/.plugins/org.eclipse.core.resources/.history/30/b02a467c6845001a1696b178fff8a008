@@ -1,0 +1,23 @@
+
+class TheShape {
+	public void draw() {
+		
+	}
+}
+class TheRect {
+	
+}
+class TheOval {
+	
+}
+class TheLine {
+	
+}
+
+public class Polymorphism {
+
+	public static void main(String[] args) {
+
+	}
+
+}
