@@ -24,13 +24,32 @@ public class HelloServlet2 extends HttpServlet {
 		
 		out.println("<html>");
 		out.println("<head>");
-		out.println("<title></title>");
+		out.println("<title>Hello, Servlet 2</title>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<h2>Hello, Servlet 2</h2>");
+		out.println("<h2>Hello, Servlet 2 (GET)</h2>");
 		out.println("<h2>" + new Date() + "</h2>");
 		out.println("</body>");
 		out.println("</html>");
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
+		resp.setContentType("text/html; charset=utf-8");
+		
+		PrintWriter out = resp.getWriter();
+		
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<title></title>");
+		out.println("</head>");
+		out.println("<body>");
+		out.println("<h2>Hello, Servlet 2 (POST)</h2>");
+		out.println("<h2>" + new Date() + "</h2>");
+		out.println("</body>");
+		out.println("</html>");
+		
 	}
 }
 
