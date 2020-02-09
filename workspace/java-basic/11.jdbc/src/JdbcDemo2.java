@@ -3,10 +3,14 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 
-public class JdbcDemo {
+public class JdbcDemo2 {
 
 	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		System.out.print("검색어 : ");
+		String key = scanner.nextLine();
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -21,7 +25,7 @@ public class JdbcDemo {
 			conn = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "hr", "hr");
 			
 			// 3. SQL 작성 + 명령 객체 만들기
-			String sql = "SELECT employee_id, first_name, last_name FROM employees";
+			String sql = "SELECT employee_id, first_name, last_name FROM employees WHERE first_name LIKE '%" + key + "%'";
 			pstmt = conn.prepareStatement(sql);
 			
 			// 4. 명령 실행
