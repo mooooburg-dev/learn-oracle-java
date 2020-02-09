@@ -10,7 +10,6 @@ public class ExceptionTestMain {
 		try {
 			method();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}		
 		
