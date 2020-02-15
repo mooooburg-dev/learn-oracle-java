@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title></title>
+</head>
+<body>
+	<h2>환율 계산</h2>
+	<form action="ex-currency.action" method="post">
+		미국 : <input type="text" name="usd">&nbsp;
+		<input type="submit" value="전송">
+	</form>
+	<form action="ex-currency.action" method="post">
+		중국 : <input type="text" name="cny">&nbsp;
+		<input type="submit" value="전송">
+	</form>
+	<hr>
+	<h2>가위 바위 보 게임</h2>
+	<form action="ssp-game.action" method="post">
+		<select name="ssp" style="height:30px;width:70px">
+			<!-- option의 value속성 값이 서버로 전송되는 값 -->
+			<option value="1">가위</option>
+			<option value="2">바위</option>
+			<option value="3">보</option>	
+		</select>
+		&nbsp;
+		<input type="submit" value="전송">
+	</form>
+	<hr>
+	<h2>성별, 취미 선택</h2>
+	<form action="handle-selection.action" method="get">
+		성별 : 
+		<input type="radio" name="gender" value="여자">여자
+		<input type="radio" name="gender" value="남자">남자
+		<br>
+		취미 : 
+		<input type="checkbox" name="hobby" value="독서">독서
+		<input type="checkbox" name="hobby" value="여행">여행
+		<input type="checkbox" name="hobby" value="음악">음악
+		<br><br>
+		<input type="submit" value="전송">
+	</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
