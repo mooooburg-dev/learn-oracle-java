@@ -28,6 +28,7 @@
 		<constructor-arg value="yyyy-MM-dd hh:mm:ss" />
 	</bean>
 	
+	<!-- MyServiceConsumer serviceConsumer2 = new MyServiceConsumer(messageService) -->
 	<bean id="serviceConsumer2" class="com.springexample.springioc2.MyServiceConsumer">
 		<constructor-arg ref="messageService" />
 		<property name="timeService" ref="timeService" />
