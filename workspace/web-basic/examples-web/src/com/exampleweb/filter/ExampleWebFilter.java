@@ -18,6 +18,7 @@ public class ExampleWebFilter implements Filter {
 
 	public void init(FilterConfig fConfig) throws ServletException { }
 
+	// 요청이 발생할 때마다 호출되는 메서드
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
 		HttpServletRequest req = (HttpServletRequest)request;

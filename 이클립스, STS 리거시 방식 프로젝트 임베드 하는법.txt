@@ -1,0 +1,7 @@
+이클립스/STS 에서 업데이트 하기
+
+Help > Eclipse Marketplace
+
+Find : STS 입력
+
+Spring Tools 3 Add-On for Spring Tools 4 3.9.12.CI
