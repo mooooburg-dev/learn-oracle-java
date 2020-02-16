@@ -9,8 +9,9 @@
 
 	<context:component-scan base-package="com.springexample.springioc2" />
 	
-	<!-- ServiceConsumer serviceConsumer = new MyServiceConsumer(); -->
+	<!-- MyServiceConsumer serviceConsumer = new MyServiceConsumer(); -->
 	<bean id="serviceConsumer" class="com.springexample.springioc2.MyServiceConsumer">
+		
 		<!--  serviceConsumer.setMessageService(messageService); -->
 		<property name="messageService" ref="messageService" />
 		<property name="timeService" ref="timeService" />
