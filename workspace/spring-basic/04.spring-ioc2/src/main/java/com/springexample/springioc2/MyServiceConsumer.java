@@ -18,6 +18,9 @@ public class MyServiceConsumer implements ServiceConsumer {
 	public void setMessageService(MessageService messageService) {
 		this.messageService = messageService;
 	}
+	public void setMessageService2(MessageService messageService) {
+		this.messageService2 = messageService;
+	}
 	
 	//////////////////////////////////////////
 	

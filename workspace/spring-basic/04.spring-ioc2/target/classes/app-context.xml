@@ -11,9 +11,9 @@
 	
 	<!-- MyServiceConsumer serviceConsumer = new MyServiceConsumer(); -->
 	<bean id="serviceConsumer" class="com.springexample.springioc2.MyServiceConsumer">
-		
 		<!--  serviceConsumer.setMessageService(messageService); -->
 		<property name="messageService" ref="messageService" />
+		<property name="messageService2" ref="messageService" />
 		<property name="timeService" ref="timeService" />
 	</bean>
 	
@@ -32,6 +32,7 @@
 	<!-- MyServiceConsumer serviceConsumer2 = new MyServiceConsumer(messageService) -->
 	<bean id="serviceConsumer2" class="com.springexample.springioc2.MyServiceConsumer">
 		<constructor-arg ref="messageService" />
+		<property name="messageService2" ref="messageService" />
 		<property name="timeService" ref="timeService" />
 	</bean>
 

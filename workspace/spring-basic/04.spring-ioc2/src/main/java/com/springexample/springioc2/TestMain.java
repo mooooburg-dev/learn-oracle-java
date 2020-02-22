@@ -15,8 +15,8 @@ public class TestMain {
 		ServiceConsumer consumer = container.getBean("serviceConsumer", ServiceConsumer.class);		
 		consumer.doSomething();
 		
-		consumer = container.getBean("serviceConsumer2", ServiceConsumer.class);		
-		consumer.doSomething();
+//		consumer = container.getBean("serviceConsumer2", ServiceConsumer.class);		
+//		consumer.doSomething();
 
 	}
 
