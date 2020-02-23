@@ -6,6 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Repository;
 
 import com.springdemoweb.vo.Member;
@@ -15,6 +19,11 @@ import com.springdemoweb.vo.UploadFile;
 @Repository("uploadDao") // == @Component("uploadDao") :  가독성의 차이, 의미의 차이만 있음
 public class UploadDaoImpl implements UploadDao {
 
+	
+	@Autowired
+	@Qualifier("dataSpice")
+	private DataSource dataSource; // new BasicDataSource
+	
 	//반환 값은 UPLOAD 테이블에 새로 INSERT된 데이터의 UPLOADNO (NEXTVAL한 후의 CURRVAL)
 	@Override
 	public int insertUpload(Upload upload) {
@@ -25,11 +34,13 @@ public class UploadDaoImpl implements UploadDao {
 		int newUploadNo = -1;
 		
 		try {
-			Class.forName("oracle.jdbc.OracleDriver");
+//			Class.forName("oracle.jdbc.OracleDriver");
+//			
+//			conn = DriverManager.getConnection(
+//					"jdbc:oracle:thin:@localhost:1521:xe", // 연결할 서버 정보
+//					"demoweb", "oraclejava"); // 계정 정보
 			
-			conn = DriverManager.getConnection(
-					"jdbc:oracle:thin:@localhost:1521:xe", // 연결할 서버 정보
-					"demoweb", "oraclejava"); // 계정 정보
+			conn = dataSource.getConnection();	// DataSource를 통해서 DB에 접속한다
 			
 			String sql = 
 					"INSERT INTO UPLOAD (UPLOADNO, TITLE, UPLOADER, CONTENT) " +
@@ -104,14 +115,16 @@ public class UploadDaoImpl implements UploadDao {
 		ArrayList<Upload> uploads = new ArrayList<Upload>();
 		
 		try {
-			//1. 드라이버 준비
-			//DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
-			Class.forName("oracle.jdbc.OracleDriver");
+//			//1. 드라이버 준비
+//			//DriverManager.registerDriver(new oracle.jdbc.OracleDriver());
+//			Class.forName("oracle.jdbc.OracleDriver");
+//			
+//			//2. 연결 (연결 객체 반환)
+//			conn = DriverManager.getConnection(
+//					"jdbc:oracle:thin:@localhost:1521:xe", // 연결할 서버 정보
+//					"demoweb", "oraclejava"); // 계정 정보
 			
-			//2. 연결 (연결 객체 반환)
-			conn = DriverManager.getConnection(
-					"jdbc:oracle:thin:@localhost:1521:xe", // 연결할 서버 정보
-					"demoweb", "oraclejava"); // 계정 정보
+			conn = dataSource.getConnection();	// DataSource를 통해서 DB에 접속한다
 			
 			//3. SQL 작성 + 명령 객체 가져오기
 			String sql = "SELECT UPLOADNO, TITLE, UPLOADER, REGDATE " + 
