@@ -1,0 +1,41 @@
+1. spring legacy project 만들기
+
+2. pom.xml 수정 (Maven 기반인 경우) 
+   
+   프로젝트 정보 (웹사이트 정보) 구성
+   
+   라이브러리, 빌드 설정
+
+3. web.xml 확인 및 수정 (제일 위에 있는 코드 수정)
+
+   DispatcherServlet
+
+   WebApplicationContext가 사용할 설정 파일 
+
+   인코딩 필터 설정(Filter)
+
+4. project -> maven update project
+
+5. 최초 실행
+
+   http://localhost:8081/webapp-name/
+
+   -> 서버 입장에서 "/" 경로의 요청이 발생
+
+      -> "/" 요청을 처리하는 처리기 구현
+
+         ( controller 패키지에 포함된 클래스 )
+
+         ( @Controllerm, @RequestMapping 적용 )
+         
+         -> 처리기가 반환한 값에 해당하는 View(.jsp) 구현
+   
+            ( /WEB-INF/views/ 하위의 .jps )
+
+6. css, image, js와 같은 파일은 webapp/resources 폴더에 저장
+
+   -> servlet-context.xml 파일의 <resources 설정에 따라
+
+      webapp/resources 폴더의 파일들은 Controller를 거치지 않고
+
+      다운로드 되는 방식으로 처리된다.
