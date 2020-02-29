@@ -1,0 +1,38 @@
+[ 항목 1 ]
+
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aop</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-aspects</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
+		
+[ 항목 2 ]
+
+	<aop:aspectj-autoproxy />
+	<context:component-scan base-package="com.springdemoweb.aop" />
+	
+[ 항목 3 ]
+
+	<bean id="txManager"
+		  class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+	
+	<!-- 미리 만들어져서 사용할 수 있는 Advice 객체 ( <bean에 대한 정의 ) -->
+	<tx:advice id="txAdvice" transaction-manager="txManager">
+		<tx:attributes>
+			<tx:method name="*Tx" />
+		</tx:attributes>
+	</tx:advice>
+	
+	<aop:config>
+	
+		<aop:advisor advice-ref="txAdvice" 
+					 pointcut="execution( * com.springdemoweb.service.*.*(..) )" />
+	
+	</aop:config>

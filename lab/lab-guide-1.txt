@@ -1,0 +1,219 @@
+[ MyBatis 기반 데이터베이스 연동 ]
+
+01. 의존성 추가
+
+    - pom.xml 파일 수정 
+
+    - commons-dbcp2, spring-jdbc, spring-tx, mybatis, mybatis-spring 의존성 추가
+
+    - 소스코드 : 1.mybatis-lab.txt 파일의 항목 1
+ 
+02. 데이터 소스 설정
+
+    - /WEB-INF/spring/root-context.xml 파일 수정
+	
+	- datasource bean 등록 
+	
+	- 소스코드 : 1.mybatis-lab.txt 파일의 항목 2
+
+03. dao 코드 수정
+
+    - dao 클래스에 datasource bean 의존성 주입
+	
+    - connection 생성 코드를 datasource 사용 방식으로 변경
+
+----------------------------------------
+
+04. MyBatis 설정
+
+    - mybatis-config.xml 파일 작성 (공통 설정)
+	
+	- XxxMapper.xml 파일 작성 (SQL-객체 매핑 설정)
+	
+05. MyBatis bean 등록
+
+    - /WEB-INF/spring/root-context.xml 파일 수정
+	
+	- 소스코드 : 1.mybatis-lab.txt 파일의 항목 3
+
+06. dao 코드 수정
+
+    - dao 클래스에 SqlSessionTemplate 의존성 주입
+	
+	- 저수준 jdbc 코드를 mybatis 코드로 수정
+	
+	- XxxDao.java 파일 코드 참고
+	
+--------------------------------------------------	
+	
+07. MyBatis Mapper bean 사용
+
+    - XxxMapper.java Mapper 인터페이스 작성
+
+    - /WEB-INF/spring/root-context.xml 파일에 Mapper bean 등록
+	
+	- 소스코드 : 1.mybatis-lab.txt 파일의 항목 4
+	
+08. dao 코드 수정
+
+    - dao 클래스에 XxxMapper bean 의존성 주입
+	
+	- 문자열 기반 mybatis 코드를 Mapper 인터페이스 기반 mybatis 코드로 수정
+	
+	- Xxx.dao.java 파일 코드 참고
+	
+--------------------------------------------
+
+09. service 코드에서 직접 Mapper bean을 사용하는 방법 적용
+
+---------------------------------------------
+	
+10. @Mapper annotation 사용
+
+    - root-context.xml에서 Mapper bean 등록 제거
+	
+	- root-context.xml에 mybatis-spring 네임스페이스 등록
+	
+	- root-context.xml에 <mybatis-spring:scan 추가
+	
+	- XxxMapper interface에 @Mapper annotation 추가
+
+
+-------------------------------------------------------------------------
+
+[ 파일 업로드 / 다운로드 ]
+
+01. 의존성 추가
+
+    - pom.xml 파일 수정 
+
+    - commons-io, commons-fileupload 의존성 추가
+
+    - 소스코드 : 2.file-upload-lab.txt 파일의 항목 1 
+
+02. File 처리기 bean 등록
+
+    - /WEB-INF/spring/appServlet/servlet-context.xml 파일 수정
+	
+	- 소스코드 :  2.upload-lab.txt 파일의 항목 2
+
+03. write.jsp 수정
+
+    - /WEB-INF/views/upload/write.jsp 수정
+	
+	- 소스코드 : 2.file-upload-lab.txt 파일의 항목 3
+	
+04. Controller 수정
+
+    - UploadController.java 의 @PostMapping write 메서드 수정
+	
+	- 소스코드 : 2. upload-file-lab.txt 파일의 항목 4
+	
+05. 폴더 만들기
+
+    webapp/upload-files, webapp/upload-temp
+	
+06. 다운로드 구현
+
+    - DownloadView.java 클래스 만들기
+	
+	- UploadController 클래스의 @GetMapping download 메서드 구현
+	
+	- 소스코드 : 2. upload-file-lab.txt 파일의 항목 5
+	
+--------------------------------------------------------------------------
+
+[ 편집/수정 기능 구현 ]
+
+01. 화면 이동 
+
+    - detail.jsp에서 edit 기능으로 링크 만들기
+	
+	- UploadController 클래스의 @GetMapping updateForm 메서드 구현
+	
+	- 소스코드 : 3.edit-lab.txt 파일의 항목 1
+	  
+02. 수정 화면 구현
+	
+	- edit.jsp 구현
+	
+03. 파일 삭제 기능 구현
+
+    - UploadController 클래스의 @GetMapping deleteFile 메서드 구현
+	
+	- 소스코드 : 3.edit-lab.txt 파일의 항목 2
+	
+04. 수정 기능 구현
+
+	- UploadController 클래스의 @PostMapping update 메서드 구현
+	
+	- 소스코드 : 3.edit-lab.txt 파일의 항목 3
+	
+	
+----------------------------------------------------
+
+[ 회원가입 기능 구현 ]
+
+01. 회원가입 화면 표시
+
+    - header.jsp에서 회원가입 화면으로 링크 만들기 ( 구현 생략 : header.jsp 참고 )
+
+    - AccountController 클래스의 @GetMapping showRegisterForm 메서드 구현 ( AccountController.java 파일 참고 )
+	
+	- account/register.jsp 구현
+	
+02. 회원가입 기능 구현
+
+    - AccountController 클래스의 @PostMapping register 메서드 구현 ( AccountController.java 파일 참고 )
+	
+03. 로그인 화면 표시
+
+    - header.jsp에서 로그인 화면으로 링크 만들기 ( 구현 생략 : header.jsp 참고 )
+
+	- AccountController 클래스의 @GetMapping showLoginForm 메서드 구현 ( AccountController.java 파일 참고 )
+	
+	- account/login.jsp 구현
+	
+04. 로그인 구현
+
+    - AccountController 클래스의 @PostMapping login 메서드 구현 ( AccountController.java 파일 참고 )
+
+    - include/header.jsp 수정 (로그인 상태에 따라 링크 표시 선택)
+	 
+05. 로그아웃 구현
+
+    - AccountController 클래스의 @GetMapping logout 메서드 구현 ( AccountController.java 파일 참고 )
+	
+
+-----------------------------------------------------------------------------
+
+[ 로그인 상태 활용 및 표시 기능 구현 ]
+
+01. interceptor 구현
+
+    - AuthInterceptor 클래스 구현
+	
+	- appServlet/servlet-context.xml 파일에 interceptor 설정
+	
+	- 구현 코드
+	
+	<beans:bean id="authInterceptor"
+				class="com.springdemoweb.interceptor.AuthInterceptor" />
+				
+	<interceptors>
+		<interceptor>
+			<mapping path="/upload/**" />
+			<beans:ref bean="authInterceptor" />
+		</interceptor>
+	</interceptors>
+	
+	
+
+	
+	
+
+	 
+	
+
+
+	

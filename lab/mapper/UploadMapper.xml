@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springdemoweb.mapper.UploadMapper">
+
+	<select id="selectUploads" resultType="Upload">
+		SELECT uploadNo, title, uploader, regDate
+		FROM UPLOAD
+		WHERE deleted = '0'
+		ORDER BY uploadNo DESC
+	</select>
+	
+	<select id="selectUploadByUploadNo" 
+		parameterType="int" resultType="Upload">
+		SELECT uploadNo, title, uploader, regDate, content, readCount 
+		FROM UPLOAD
+		WHERE UPLOADNO = #{ uploadNo } AND DELETED = '0'
+	</select>
+	
+	<select id="selectUploadFilesByUploadNo"
+		parameterType="int" resultType="UploadFile">
+		SELECT uploadFileNo, uploadNo, savedFileName, userFileName, downloadCount 
+		FROM UPLOADFILE
+		WHERE UPLOADNO = #{ uploadNo }
+	</select>
+	
+	<select id="selectUploadFileByUploadFileNo"
+		parameterType="int" resultType="UploadFile">
+		SELECT uploadFileNo, uploadNo, savedFileName, userFileName, downloadCount 
+		FROM UPLOADFILE
+		WHERE UPLOADFILENO = #{ uploadFileNo }
+	</select>
+	
+	<!-- **************************************************** -->
+	
+	<!-- insert가 완료된 후 keyColumn(uploadNo)의 값을 vo의 keyProperty(uploadNo)에 저장 -->
+	<insert id="insertUpload" parameterType="Upload"
+			useGeneratedKeys="true" keyColumn="uploadNo" keyProperty="uploadNo">
+		INSERT INTO UPLOAD (UPLOADNO, TITLE, UPLOADER, CONTENT)
+		VALUES (UPLOAD_SEQUENCE.NEXTVAL, #{ title }, #{ uploader }, #{ content })
+	</insert>
+	
+	<!-- insert가 완료된 후 selectKey의 SQL을 실행해서 vo의 uploadNo에 값을 저장 -->
+	<insert id="insertUpload2" parameterType="Upload">
+		<selectKey keyProperty="uploadNo" order="AFTER" resultType="int">
+			SELECT UPLOAD_SEQUENCE.CURRVAL FROM DUAL
+		</selectKey>
+		INSERT INTO UPLOAD (UPLOADNO, TITLE, UPLOADER, CONTENT)
+		VALUES (UPLOAD_SEQUENCE.NEXTVAL, #{ title }, #{ uploader }, #{ content })
+	</insert>
+	
+	<insert id="insertUploadFile" parameterType="UploadFile">
+		INSERT INTO UPLOADFILE (
+			UPLOADFILENO
+			, UPLOADNO
+			, SAVEDFILENAME
+			, USERFILENAME
+		)
+		VALUES (
+			UPLOADFILE_SEQUENCE.NEXTVAL
+			, #{ uploadNo }
+			, #{ savedFileName }
+			, #{ userFileName }
+		)
+	</insert>
+	
+	<update id="deleteUpload" parameterType="int">
+		UPDATE UPLOAD 
+		SET DELETED = '1'
+		WHERE UPLOADNO = #{ uploadNo }
+	</update>
+	
+	<delete id="deleteUploadFile" parameterType="int">
+		DELETE FROM UPLOADFILE
+		WHERE UPLOADFILENO = #{ uploadFileNo }
+	</delete>
+	
+	<update id="updateUpload" parameterType="Upload">
+		UPDATE UPLOAD
+		SET TITLE = #{ title }, CONTENT = #{ content }
+		WHERE UPLOADNO = #{ uploadNo }
+	</update>
+	
+</mapper>

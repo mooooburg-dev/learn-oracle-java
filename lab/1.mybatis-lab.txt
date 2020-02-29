@@ -1,0 +1,79 @@
+[ 항목 1 ]
+
+	<!-- spring jdbc library -->
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-jdbc</artifactId>
+		<version>${org.springframework-version}</version>
+	</dependency>
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-tx</artifactId>
+		<version>${org.springframework-version}</version>
+	</dependency>
+
+	<dependency>
+		<groupId>org.apache.commons</groupId>
+		<artifactId>commons-dbcp2</artifactId>
+		<version>2.5.0</version>
+	</dependency>		
+	<!-- end of spring jdbc library -->
+
+	<!-- spring mybatis library -->
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>3.4.6</version>
+	</dependency>
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis-spring</artifactId>
+		<version>1.3.2</version>
+	</dependency>
+	<!-- end of spring mybatis library -->
+
+[ 항목 2 ]
+
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe" />
+		<property name="username" value="demoweb" />
+		<property name="password" value="oraclejava" />
+		<property name="maxIdle" value="10" />
+		<property name="maxTotal" value="20" />
+		<property name="maxWaitMillis" value="-1" />
+	</bean>
+	
+	
+[ 항목 3 ]
+
+	<!-- SqlSessionFactoryBean.getObejct() -> SqlSessionFactory를 반환 -->
+	<bean id="sqlSessionFactory"
+		  class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+	
+	<!-- Spring SqlSessionTemplate (SqlSession을 내장) 객체 등록 -->
+	<bean id="sqlSessionTemplate"
+		  class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+[ 항목 4 ]
+
+	<!-- MapperFactoryBean.getObject() -> MemberMapper 인터페이스 구현 객체 반환 -->
+	<bean id="memberMapper"
+		  class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" 
+				  value="com.springdemoweb.mapper.MemberMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+	<!-- MapperFactoryBean.getObject() -> UploadMapper 인터페이스 구현 객체 반환 -->
+	<bean id="uploadMapper"
+		  class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" 
+				  value="com.springdemoweb.mapper.UploadMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
