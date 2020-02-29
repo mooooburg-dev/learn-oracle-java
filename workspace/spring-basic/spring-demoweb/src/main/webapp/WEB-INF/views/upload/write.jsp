@@ -20,7 +20,7 @@
 		<div id="inputcontent">
 		    <div id="inputmain">
 		        <div class="inputsubtitle">업로드 자료 정보</div>
-		        <form action="write" method="post">
+		        <form action="write" method="post" enctype="multipart/form-data">
 		        <table>
 		            <tr>
 		                <th>제목</th>

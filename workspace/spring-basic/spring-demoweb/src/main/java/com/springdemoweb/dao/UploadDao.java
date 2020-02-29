@@ -1,6 +1,6 @@
 package com.springdemoweb.dao;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.springdemoweb.vo.Upload;
 import com.springdemoweb.vo.UploadFile;
@@ -12,11 +12,11 @@ public interface UploadDao {
 
 	void insertUploadFile(UploadFile file);
 
-	ArrayList<Upload> selectUploads();
+	List<Upload> selectUploads();
 
 	Upload selectUploadByUploadNo(int uploadNo);
 
-	ArrayList<UploadFile> selectUploadFilesByUploadNo(int uploadNo);
+	List<UploadFile> selectUploadFilesByUploadNo(int uploadNo);
 
 	UploadFile selectUploadFileByUploadFileNo(int fileNo);
 

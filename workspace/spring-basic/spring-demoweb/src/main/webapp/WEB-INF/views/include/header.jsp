@@ -4,7 +4,7 @@
 
 		<div id="header">    	
             <div class="title">
-                <a href="/home">DEMO WEBSITE</a>
+                <a href="/">DEMO WEBSITE</a>
             </div>
             <div class="links">
 

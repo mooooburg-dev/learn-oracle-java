@@ -1,10 +1,6 @@
 package com.springdemoweb.controller;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
-
-import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -13,17 +9,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import com.springdemoweb.common.Util;
 import com.springdemoweb.service.UploadService;
 import com.springdemoweb.service.UploadServiceImpl;
 import com.springdemoweb.vo.Upload;
-import com.springdemoweb.vo.UploadFile;
 
-@Controller
-public class UploadController {
+//@Controller
+public class UploadController2 {
 	
 	@Autowired
 	@Qualifier("uploadService")
@@ -53,52 +45,20 @@ public class UploadController {
 	
 	// PostMapping : method="post"인 요청에 대한 처리기
 	@PostMapping(path = {"/upload/write"})
-	//public String write(MultipartFile attach, Upload upload) {
-	public String write(MultipartHttpServletRequest req, Upload upload) {
+	public String write(Upload upload) {
+		// Upload로 받기(꼭 Upload가 아니라 자유롭게 받을 수 있다)
+		// System.out.println(upload);
 		
+		
+		// 1. 요청 데이터 읽기 (DispatcherServlet이 처리해서 전달인자로 전달)
+		
+		// 2. 데이터 처리 (여기서는 데이터베이스에 데이터 저장)
 		upload.setUploader("pantagruel");
+		int newUploadNo = uploadService.writeUpload(upload);
 		
-		MultipartFile attach = req.getFile("attach");
-		
-		if (attach != null) {			
-			ServletContext application = req.getServletContext();
-			// applicaiton.getRealPath("웹경로") : 컴퓨터의 실제 경로를 반환
-			String path = application.getRealPath("/upload-files");
-			
-			String userFileName = attach.getOriginalFilename();
-			if (userFileName.contains("\\")) { // iexplore 경우
-				//C:\AAA\BBB\CCC.png -> CCC.png 
-				userFileName = userFileName.substring(userFileName.lastIndexOf("\\") + 1);
-			}
-			// 중복되지 않는 고유한 파일 이름 만들기
-			String savedFileName = Util.makeUniqueFileName(userFileName);
-			
-			try {
-				// 첨부파일을 지정된 경로에 저장
-				attach.transferTo(new File(path, savedFileName)); //파일 저장
-
-				// ---------------------------------------------------------------------
-				
-				// VO 객체를 만들고 파일 정보 저장
-				UploadFile uploadFile = new UploadFile();
-				uploadFile.setUserFileName(userFileName);
-				uploadFile.setSavedFileName(savedFileName);
-				//uploadFile.setUploadNo(newUploadNo);
-				//uploadService.registerUploadFile(uploadFile);
-				ArrayList<UploadFile> files = new ArrayList<UploadFile>();
-				files.add(uploadFile);
-				upload.setFiles(files);
-				
-				//데이터 저장				
-				//uploadService.registerUploadTx(upload);
-				uploadService.writeUpload(upload);
-				
-			} catch (Exception ex) {
-				ex.printStackTrace();
-			}
-		}
-		
-		return "redirect:list";
+		// 3. 다른 처리기 또는 jsp로 이동
+		return "redirect:list"; // redirect: @GetMapping, @PostMapping, @RequestMapping된 메서드로 이동
+		                             // viewname: jsp로 이동(forward)
 	}
 	
 	

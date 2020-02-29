@@ -1,7 +1,7 @@
 package com.springdemoweb.vo;
 
 import java.sql.Date;
-import java.util.ArrayList;
+import java.util.List;
 
 import lombok.Data;
 
@@ -17,6 +17,6 @@ public class Upload {
 	private boolean deleted;
 	
 	//Upload Table과 UploadFile Table 사이의 1:Many 관계를 구현하는 필드
-	private ArrayList<UploadFile> files;
+	private List<UploadFile> files;
 	
 }

@@ -2,7 +2,9 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
@@ -20,6 +22,39 @@
 		<property name="maxWaitMillis" value="-1"></property> <!-- 얼마나 기다릴까(단위는 초단위) : -1은 무한정 기다리겠다. -->
 	</bean>
 	
+	
+	<!-- SqlSessionFactoryBean.getObejct() -> SqlSessionFactory를 반환 -->
+	<bean id="sqlSessionFactory"
+		  class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+	
+	<!-- Spring SqlSessionTemplate (SqlSession을 내장) 객체 등록 -->
+	<bean id="sqlSessionTemplate"
+		  class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- MapperFactoryBean.getObject() -> MemberMapper 인터페이스 구현 객체 반환 -->
+	<!-- MapperFactoryBean.getObject() -> UploadMapper 인터페이스 구현 객체 반환 -->
+	<!-- 
+	<bean id="memberMapper"
+		  class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" 
+				  value="com.springdemoweb.mapper.MemberMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+
+	<bean id="uploadMapper"
+		  class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" 
+				  value="com.springdemoweb.mapper.UploadMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+	-->
+	
+	<mybatis-spring:scan base-package="com.springdemoweb.mapper" />
 	
 </beans>
 
