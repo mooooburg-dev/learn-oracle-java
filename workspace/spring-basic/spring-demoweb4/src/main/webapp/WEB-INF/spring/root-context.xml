@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
+	xsi:schemaLocation="http://mybatis.org/schema/mybatis-spring http://mybatis.org/schema/mybatis-spring-1.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+	<context:component-scan base-package="com.springdemoweb.service" />
+	<context:component-scan base-package="com.springdemoweb.dao" />		
+	
+	<!-- new BasicDataSource() -->
+	<bean id="dataSource" 
+		  class="org.apache.commons.dbcp2.BasicDataSource">
+		<property name="url" value="jdbc:oracle:thin:@211.197.18.246:1551:xe" />
+		<property name="driverClassName" value="oracle.jdbc.OracleDriver" />
+		<property name="username" value="demoweb" />
+		<property name="password" value="oraclejava" />
+		<property name="maxTotal" value="100" /> <!-- 최대 몇개까지 남길까 -->
+		<property name="maxIdle" value="10" /> <!-- 최소 몇 개는 남겨놓을까 -->
+		<property name="maxWaitMillis" value="-1" /> <!-- 얼마나 기다릴까(단위는 초단위) : -1은 무한정 기다리겠다. -->
+	</bean>
+	
+	<!-- new SqlSessionFactoryBean() X -->
+	<!-- (new SqlSessionFactoryBean()).getObejct() -> SqlSessionFactory를 반환 -->
+	<bean id="sqlSessionFactory"
+		  class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" value="classpath:mybatis-config.xml" />
+	</bean>
+	
+	<!-- new SqlSessionTemplate() -->
+	<!-- Spring SqlSessionTemplate (SqlSession을 내장) 객체 등록 -->	
+	<bean id="sqlSessionTemplate"
+		  class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+
+	<!-- MapperFactoryBean.getObject() -> MemberMapper 인터페이스 구현 객체 반환 -->
+	<!-- MapperFactoryBean.getObject() -> UploadMapper 인터페이스 구현 객체 반환 -->
+	<!-- 
+	<bean id="memberMapper"
+		  class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" 
+				  value="com.springdemoweb.mapper.MemberMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>	
+	
+	<bean id="uploadMapper"
+		  class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="mapperInterface" 
+				  value="com.springdemoweb.mapper.UploadMapper" />
+		<property name="sqlSessionTemplate" ref="sqlSessionTemplate" />
+	</bean>
+	-->
+	
+	<mybatis-spring:scan base-package="com.springdemoweb.mapper"/>
+	
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+

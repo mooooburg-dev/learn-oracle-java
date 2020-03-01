@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Hello Spring Boot</title>
+</head>
+<body>
+	<h1>Hello, Spring Boot World !!!</h1>
+	<h1 th:text="${ #dates.format(currentTime, 'yyyy년 MM월 dd일')}"></h1>
+</body>
+</html>

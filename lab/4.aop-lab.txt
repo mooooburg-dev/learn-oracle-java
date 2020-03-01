@@ -36,3 +36,20 @@
 					 pointcut="execution( * com.springdemoweb.service.*.*(..) )" />
 	
 	</aop:config>
+	
+[ 항목 4 ]
+
+	@Override
+	public int writeUploadTx(Upload upload) {
+
+		//return uploadDao.insertUpload(upload);
+		int newUploadNo = uploadDao.insertUpload(upload);
+		
+		int result = 10 / 0;
+		
+		for (UploadFile uf : upload.getFiles()) {
+			uf.setUploadNo(newUploadNo); // 새로 만들어진 자료 번호
+			uploadDao.insertUploadFile(uf);
+		}
+		return newUploadNo;
+	}

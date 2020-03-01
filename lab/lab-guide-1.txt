@@ -4,7 +4,7 @@
 
     - pom.xml 파일 수정 
 
-    - commons-dbcp2, spring-jdbc, spring-tx, mybatis, mybatis-spring 의존성 추가
+    - commons-dbcp2, spring-jdbc, spring-tx, mybatis, spring-mybatis 의존성 추가
 
     - 소스코드 : 1.mybatis-lab.txt 파일의 항목 1
  
@@ -22,13 +22,11 @@
 	
     - connection 생성 코드를 datasource 사용 방식으로 변경
 
-----------------------------------------
-
 04. MyBatis 설정
 
-    - mybatis-config.xml 파일 작성 (공통 설정)
+    - mybatis-config.xml 파일 작성
 	
-	- XxxMapper.xml 파일 작성 (SQL-객체 매핑 설정)
+	- XxxMapper.xml 파일 작성
 	
 05. MyBatis bean 등록
 
@@ -43,8 +41,6 @@
 	- 저수준 jdbc 코드를 mybatis 코드로 수정
 	
 	- XxxDao.java 파일 코드 참고
-	
---------------------------------------------------	
 	
 07. MyBatis Mapper bean 사용
 
@@ -62,21 +58,10 @@
 	
 	- Xxx.dao.java 파일 코드 참고
 	
---------------------------------------------
-
 09. service 코드에서 직접 Mapper bean을 사용하는 방법 적용
 
----------------------------------------------
 	
 10. @Mapper annotation 사용
-
-    - root-context.xml에서 Mapper bean 등록 제거
-	
-	- root-context.xml에 mybatis-spring 네임스페이스 등록
-	
-	- root-context.xml에 <mybatis-spring:scan 추가
-	
-	- XxxMapper interface에 @Mapper annotation 추가
 
 
 -------------------------------------------------------------------------
@@ -91,7 +76,7 @@
 
     - 소스코드 : 2.file-upload-lab.txt 파일의 항목 1 
 
-02. File 처리기 bean 등록
+02. MyBatis bean 등록
 
     - /WEB-INF/spring/appServlet/servlet-context.xml 파일 수정
 	
@@ -152,7 +137,7 @@
 	
 ----------------------------------------------------
 
-[ 회원가입 기능 구현 ]
+[ 회원가입 / 로그인 기능 구현 ]
 
 01. 회원가입 화면 표시
 
@@ -207,7 +192,39 @@
 		</interceptor>
 	</interceptors>
 	
+--------------------------------------------------------------------------------
+
+[ AOP 구현 - Logging ]
+
+01. 의존성 추가
+
+    - pom.xml 파일 수정 
+
+    - spring-aop, spring-aspects 의존성 추가
+
+    - 소스코드 : 4.aop-lab.txt 파일의 항목 1 
+
+02. aop 빈 등록을 위한 annotation 설정
+
+	- app-context.xml 파일 수정
+
+    - 소스코드 :  4.aop-lab.txt 파일의 항목 2
+
+03. Logging 구현
+
+    - com.springdemoweb.aop.DemoWebLogger 클래스 구현
+
+[ AOP 구현 - Transaction ]
 	
+04. aop 기반 Transaction 설정
+
+    - root-context.xml 파일 수정
+	
+	- 소스코드 : 4. aop-lab.txt 파일의 항목 3
+	
+05. UploadServiceImpl.writeUploadTx 메서드 추가 또는 수정
+
+    - 소스코드 : 4. aop-lab.txt 파일의 항목 4
 
 	
 	

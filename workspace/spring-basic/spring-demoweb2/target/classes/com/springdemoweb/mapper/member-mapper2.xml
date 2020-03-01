@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springdemoweb.mapper.MemberMapper">
+
+	<select id="selectMemberByIdAndPasswd"
+		parameterType="hashmap" resultType="com.springdemoweb.vo.Member">
+		SELECT memberId, email, userType, regDate
+		FROM MEMBER
+		WHERE MEMBERID = #{ memberId } AND PASSWD = #{ passwd }
+	</select>
+	
+	<insert id="insertMember" parameterType="com.springdemoweb.vo.Member">
+		INSERT INTO MEMBER (MEMBERID, PASSWD, EMAIL) 
+		VALUES (#{ memberId }, #{ passwd }, #{ email })
+	</insert>
+	
+</mapper>
