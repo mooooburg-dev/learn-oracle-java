@@ -61,4 +61,10 @@ public class UploadServiceImpl implements UploadService {
 		
 	}
 
+	@Override
+	public UploadFile findUploadFileByUploadFileNo(int uploadFileNo) {
+		// TODO Auto-generated method stub
+		return uploadDao.selectUploadFileByUploadFileNo(uploadFileNo);
+	}
+
 }

@@ -43,9 +43,12 @@
 		            <tr>
 		                <th>첨부자료</th>
 		                <td>								<!-- EL/jstl에서 upload.files는 upload.getFiles()와 같다 -->
-		                <c:forEach var="file" items="${ upload.files }">
-		                	<div>${ file.userFileName } [${ file.downloadCount }]</div>
-		                </c:forEach>
+			                <c:forEach var="file" items="${ upload.files }">
+			                	<div>
+				                	<a href="/upload/download/${ file.uploadFileNo}">${ file.userFileName }</a> 
+				                	[${ file.downloadCount }]
+			                	</div>
+			                </c:forEach>
 		                </td>
 		            </tr>
 		            <tr>

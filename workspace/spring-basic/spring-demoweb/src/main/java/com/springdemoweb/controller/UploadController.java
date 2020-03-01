@@ -15,10 +15,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.View;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.springdemoweb.common.Util;
 import com.springdemoweb.service.UploadService;
 import com.springdemoweb.service.UploadServiceImpl;
+import com.springdemoweb.view.DownloadView;
 import com.springdemoweb.vo.Upload;
 import com.springdemoweb.vo.UploadFile;
 
@@ -125,6 +128,21 @@ public class UploadController {
 		
 		// View 또는 다른 처리기로 이동
 		return  "redirect:/upload/list";
+	}
+	
+	@GetMapping(path = {"/upload/download/{uploadFileNo}"})
+	public View download(@PathVariable int uploadFileNo, Model model) {
+		
+		UploadFile file = uploadService.findUploadFileByUploadFileNo(uploadFileNo);
+		if (file == null) {
+			//return "redirect:/upload/list"; (아래 코드와 같은 기능)
+			return new RedirectView("/upload/list");
+		}
+		
+		model.addAttribute("file", file);
+		
+		DownloadView v= new DownloadView();
+		return v;
 	}
 	
 	
